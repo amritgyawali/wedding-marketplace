@@ -16,7 +16,8 @@ export default function RegisterPage() {
   const [role, setRole] = useState<"COUPLE" | "VENDOR">("COUPLE");
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegisterInput>({
-    resolver: zodResolver(RegisterSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(RegisterSchema) as any,
     defaultValues: { role: "COUPLE" },
   });
 

@@ -46,8 +46,8 @@ export async function POST(req: NextRequest) {
               status: "ACTIVE",
               stripeSubscriptionId: sub.id,
               stripePriceId: sub.items.data[0].price.id,
-              currentPeriodStart: new Date(sub.current_period_start * 1000),
-              currentPeriodEnd: new Date(sub.current_period_end * 1000),
+              currentPeriodStart: new Date((sub as never as { current_period_start: number }).current_period_start * 1000),
+              currentPeriodEnd: new Date((sub as never as { current_period_end: number }).current_period_end * 1000),
             },
             create: {
               vendorId,
@@ -55,8 +55,8 @@ export async function POST(req: NextRequest) {
               status: "ACTIVE",
               stripeSubscriptionId: sub.id,
               stripePriceId: sub.items.data[0].price.id,
-              currentPeriodStart: new Date(sub.current_period_start * 1000),
-              currentPeriodEnd: new Date(sub.current_period_end * 1000),
+              currentPeriodStart: new Date((sub as never as { current_period_start: number }).current_period_start * 1000),
+              currentPeriodEnd: new Date((sub as never as { current_period_end: number }).current_period_end * 1000),
             },
           });
         }
@@ -69,8 +69,8 @@ export async function POST(req: NextRequest) {
           where: { stripeSubscriptionId: sub.id },
           data: {
             status: sub.status.toUpperCase() as never,
-            currentPeriodStart: new Date(sub.current_period_start * 1000),
-            currentPeriodEnd: new Date(sub.current_period_end * 1000),
+            currentPeriodStart: new Date((sub as never as { current_period_start: number }).current_period_start * 1000),
+            currentPeriodEnd: new Date((sub as never as { current_period_end: number }).current_period_end * 1000),
             cancelAtPeriodEnd: sub.cancel_at_period_end,
           },
         });

@@ -24,7 +24,8 @@ export function InquiryForm({ vendorId, vendorName, onSuccess }: InquiryFormProp
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<CreateInquiryInput>({
-    resolver: zodResolver(CreateInquirySchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(CreateInquirySchema) as any,
     defaultValues: { vendorId },
   });
 

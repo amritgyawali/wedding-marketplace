@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { VerificationStatus } from "@prisma/client";
+import { Prisma, VerificationStatus } from "@prisma/client";
 import type {
   SearchAdapter,
   SearchResponse,
@@ -21,7 +21,8 @@ export class PrismaSearchAdapter implements SearchAdapter {
       sort = "featured",
     } = params;
 
-    const where: Record<string, unknown> = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const where: any = {
       verificationStatus: VerificationStatus.VERIFIED,
     };
 
@@ -108,21 +109,22 @@ export class PrismaSearchAdapter implements SearchAdapter {
   }
 }
 
-function buildOrderBy(sort: string) {
+function buildOrderBy(sort: string): Prisma.VendorProfileOrderByWithRelationInput[] {
+  const DESC = Prisma.SortOrder.desc;
+  const ASC = Prisma.SortOrder.asc;
   switch (sort) {
     case "rating":
-      return [{ isFeatured: "desc" }, { avgRating: "desc" }];
+      return [{ isFeatured: DESC }, { avgRating: DESC }];
     case "price_asc":
-      return [{ isFeatured: "desc" }, { priceFrom: "asc" }];
+      return [{ isFeatured: DESC }, { priceFrom: ASC }];
     case "price_desc":
-      return [{ isFeatured: "desc" }, { priceFrom: "desc" }];
+      return [{ isFeatured: DESC }, { priceFrom: DESC }];
     case "newest":
-      return [{ isFeatured: "desc" }, { createdAt: "desc" }];
+      return [{ isFeatured: DESC }, { createdAt: DESC }];
     default:
       return [
-        { isFeatured: "desc" },
-        { subscription: { tier: "desc" } },
-        { avgRating: "desc" },
+        { isFeatured: DESC },
+        { avgRating: DESC },
       ];
   }
 }

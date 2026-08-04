@@ -13,7 +13,7 @@ import { prisma } from "@/lib/prisma";
 import { formatPrice, formatDate, truncate, slugToTitle } from "@/lib/utils";
 import { auth } from "@/auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { MapPin, Globe, Phone, Mail, Star, Instagram, Facebook } from "lucide-react";
+import { MapPin, Globe, Phone, Mail, Star, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 
 interface Props {
@@ -222,9 +222,9 @@ export default async function VendorProfilePage({ params }: Props) {
                 )}
 
                 {isOwner ? (
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href="/dashboard/vendor/profile">Edit Profile</a>
-                  </Button>
+                  <a href="/dashboard/vendor/profile" className="block w-full">
+                    <Button variant="outline" className="w-full">Edit Profile</Button>
+                  </a>
                 ) : (
                   <Dialog>
                     <DialogTrigger asChild>
@@ -239,7 +239,7 @@ export default async function VendorProfilePage({ params }: Props) {
                       ) : (
                         <div className="text-center py-4">
                           <p className="text-gray-600 mb-4">Sign in to send an inquiry</p>
-                          <Button asChild><a href="/login">Sign in</a></Button>
+                          <a href="/login"><Button>Sign in</Button></a>
                         </div>
                       )}
                     </DialogContent>
@@ -264,7 +264,7 @@ export default async function VendorProfilePage({ params }: Props) {
                   )}
                   {vendor.instagramUrl && (
                     <a href={vendor.instagramUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-pink-600">
-                      <Instagram className="h-4 w-4" /> Instagram
+                      <ExternalLink className="h-4 w-4" /> Instagram
                     </a>
                   )}
                 </div>

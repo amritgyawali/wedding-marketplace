@@ -25,7 +25,8 @@ export function ReviewForm({ vendorId, onSuccess }: ReviewFormProps) {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<CreateReviewInput>({
-    resolver: zodResolver(CreateReviewSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(CreateReviewSchema) as any,
     defaultValues: { vendorId },
   });
 

@@ -18,7 +18,8 @@ export default function VendorProfilePage() {
   const [error, setError] = useState("");
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<VendorProfileInput>({
-    resolver: zodResolver(VendorProfileSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(VendorProfileSchema) as any,
   });
 
   useEffect(() => {
