@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `Wedding ${catTitle} in ${cityTitle} — Find & Book`,
     description: `Browse the best wedding ${catTitle.toLowerCase()} in ${cityTitle}. Compare packages, read reviews, and contact vendors directly.`,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_APP_URL}/vendors/${category}/${city}`,
+      canonical: `${process.env.NEXT_PUBLIC_APP_URL}/vendors/${category}/cities/${city}`,
     },
   };
 }
@@ -39,7 +39,7 @@ export default async function CityCategoryPage({ params }: Props) {
   const breadcrumbs = buildBreadcrumbSchema([
     { name: "Home", url: appUrl },
     { name: catTitle, url: `${appUrl}/vendors/${category}` },
-    { name: cityTitle, url: `${appUrl}/vendors/${category}/${city}` },
+    { name: cityTitle, url: `${appUrl}/vendors/${category}/cities/${city}` },
   ]);
 
   const itemList = buildItemListSchema(
@@ -100,7 +100,7 @@ export default async function CityCategoryPage({ params }: Props) {
               {["Melbourne", "Sydney", "Brisbane", "Perth", "Adelaide", "Kathmandu", "Pokhara"].map((c) => (
                 <a
                   key={c}
-                  href={`/vendors/${category}/${c.toLowerCase()}`}
+                  href={`/vendors/${category}/cities/${c.toLowerCase()}`}
                   className="px-4 py-2 rounded-full bg-white border border-gray-200 text-sm text-gray-700 hover:border-pink-300 hover:text-pink-700 transition-colors"
                 >
                   {c}

@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://weddingmarketplace.com";
 
 const CATEGORIES = [
@@ -34,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...CATEGORIES.flatMap((cat) =>
       CITIES.map((city) => ({
-        url: `${BASE_URL}/vendors/${cat}/${city}`,
+        url: `${BASE_URL}/vendors/${cat}/cities/${city}`,
         changeFrequency: "weekly" as const,
         priority: 0.7,
       }))

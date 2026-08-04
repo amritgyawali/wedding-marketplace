@@ -6,6 +6,8 @@ import { SearchBar } from "@/components/search/search-bar";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const CATEGORIES = [
   { name: "Photographers", slug: "photographers", emoji: "📷", count: null },
   { name: "Venues", slug: "venues", emoji: "🏛️", count: null },
@@ -98,7 +100,7 @@ export default async function HomePage() {
               {CITIES.map((city) => (
                 <Link
                   key={city.name}
-                  href={`/vendors/photographers/${city.name.toLowerCase()}`}
+                  href={`/vendors/photographers/cities/${city.name.toLowerCase()}`}
                   className="relative h-40 rounded-xl overflow-hidden bg-gradient-to-br from-pink-400 to-rose-600 flex flex-col items-center justify-center text-white hover:shadow-lg transition-shadow"
                 >
                   <span className="text-xl font-bold">{city.name}</span>

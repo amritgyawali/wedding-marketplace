@@ -6,6 +6,8 @@ import Image from "next/image";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Real Weddings — Inspiration & Stories",
   description: "Get inspired by real weddings from couples across Australia and Nepal. Browse stunning photos and vendor recommendations.",

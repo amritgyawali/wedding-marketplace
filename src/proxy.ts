@@ -6,7 +6,7 @@ const COUPLE_PATHS = ["/dashboard/couple"];
 const ADMIN_PATHS = ["/dashboard/admin"];
 const AUTH_PATHS = ["/login", "/register"];
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const { pathname } = req.nextUrl;
   const session = req.auth;
   const role = session?.user?.role;
