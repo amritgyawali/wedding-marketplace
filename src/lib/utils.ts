@@ -72,3 +72,29 @@ export function slugToTitle(slug: string): string {
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 }
+
+/** Stable 0–359 hue derived from a string — gives each vendor a consistent placeholder tint. */
+export function hueFromString(input: string): number {
+  let hash = 0;
+  for (let i = 0; i < input.length; i++) {
+    hash = (hash * 31 + input.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash) % 360;
+}
+
+export function formatCompact(value: number): string {
+  return new Intl.NumberFormat("en-AU", { notation: "compact", maximumFractionDigits: 1 }).format(value);
+}
+
+export function pluralize(count: number, singular: string, plural = `${singular}s`): string {
+  return `${count.toLocaleString()} ${count === 1 ? singular : plural}`;
+}
+
+/** Whole days from `now` until `date` (negative once the date has passed). */
+export function daysUntil(date: Date | string, now: number): number {
+  return Math.ceil((new Date(date).getTime() - now) / 86_400_000);
+}
+
+export function formatShortDate(date: Date | string): string {
+  return new Date(date).toLocaleDateString("en-AU", { day: "numeric", month: "short" });
+}
